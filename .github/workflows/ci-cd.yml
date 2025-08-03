@@ -29,31 +29,7 @@ jobs:
     - name: Run tests
       run: go test -v -race -coverprofile=coverage.out ./...
     
-    - name: Calculate coverage percentage
-      run: |
-        # Extract coverage percentage from go test output
-        COVERAGE=$(go tool cover -func=coverage.out | grep total | awk '{print $3}' | sed 's/%//')
-        echo "COVERAGE_PERCENTAGE=$COVERAGE" >> $GITHUB_ENV
-        echo "Coverage: $COVERAGE%"
-    
-    - name: Create coverage badge file
-      run: |
-        # Create a JSON file that will be committed to the repository
-        echo "{\"coverage\": \"${{ env.COVERAGE_PERCENTAGE }}%\"}" > coverage-badge.json
-        echo "Coverage badge created: ${{ env.COVERAGE_PERCENTAGE }}%"
-    
-    - name: Update coverage badge only if changed
-      run: |
-        # Only commit if the coverage has changed
-        if [ ! -f coverage-badge.json ] || [ "$(cat coverage-badge.json)" != "{\"coverage\": \"${{ env.COVERAGE_PERCENTAGE }}%\"}" ]; then
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add coverage-badge.json
-          git commit -m "Update coverage badge: ${{ env.COVERAGE_PERCENTAGE }}%"
-          git push
-        else
-          echo "Coverage unchanged, skipping commit"
-        fi
+
     
 
     
