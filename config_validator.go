@@ -46,6 +46,9 @@ func ValidateConfig(config CacheConfig) ConfigValidationResult {
 		result.Suggestions = append(result.Suggestions, fmt.Sprintf("Consider reducing shard count to %d (4x CPU cores) for optimal performance", numCPU*4))
 	} else if config.ShardCount < numCPU && config.CacheSize > 10000 {
 		result.Suggestions = append(result.Suggestions, fmt.Sprintf("Consider increasing shard count to %d for better concurrency", numCPU))
+	} else if config.CacheSize >= 1000000 && config.ShardCount < numCPU*2 {
+		// Special case for very large caches
+		result.Suggestions = append(result.Suggestions, fmt.Sprintf("Consider increasing shard count to %d for large caches to improve concurrency and performance", numCPU*2))
 	}
 
 	// TTL validation
