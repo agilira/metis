@@ -128,7 +128,7 @@ jobs:
         GOOS=darwin GOARCH=amd64 go build -o bin/profiler-darwin-amd64 ./cmd/profiler
     
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: metis-binaries
         path: bin/
@@ -156,7 +156,7 @@ jobs:
         cat benchmark-results.txt
     
     - name: Upload benchmark results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: benchmark-results
         path: benchmark-results.txt
@@ -171,48 +171,21 @@ jobs:
     - uses: actions/checkout@v4
     
     - name: Download build artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: metis-binaries
         path: bin/
     
     - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: v${{ github.run_number }}
-        release_name: Release v${{ github.run_number }}
+        name: Release v${{ github.run_number }}
         draft: false
         prerelease: false
-    
-    - name: Upload Release Assets
-      uses: actions/upload-release-asset@v1
+        files: |
+          bin/metis-linux-amd64
+          bin/metis-windows-amd64.exe
+          bin/metis-darwin-amd64
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/metis-linux-amd64
-        asset_name: metis-linux-amd64
-        asset_content_type: application/octet-stream
-    
-    - name: Upload Release Assets - Windows
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/metis-windows-amd64.exe
-        asset_name: metis-windows-amd64.exe
-        asset_content_type: application/octet-stream
-    
-    - name: Upload Release Assets - macOS
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/metis-darwin-amd64
-        asset_name: metis-darwin-amd64
-        asset_content_type: application/octet-stream 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
