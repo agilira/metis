@@ -1,7 +1,7 @@
 # Metis: A High-Performance Go Caching Library
 ### an AGILira fragment
 
-Metis is a sharded, high-performance caching library for Go, designed for applications that demand speed, scalability, and observability. It provides precise control over eviction policies, memory usage, and configuration, making it suitable for a wide range of use cases, from web servers to high-throughput API gateways.
+Metis is a high-performance, sharded caching library written in Go, designed for systems that demand speed, scalability, and observability. Originally built as the internal caching engine for Zephyros, Metis has evolved into a standalone project, earning its own name and identity.
 
 [![CI/CD Pipeline](https://github.com/agilira/metis/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/agilira/metis/actions?query=workflow%3A%22CI%2FCD+Pipeline%22)
 [![Security Scan](https://github.com/agilira/metis/workflows/Security%20Scan/badge.svg)](https://github.com/agilira/metis/actions?query=workflow%3A%22Security+Scan%22)
