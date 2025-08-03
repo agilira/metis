@@ -1,0 +1,12 @@
+{
+  "cache_size": 10000,
+  "ttl": "5m",
+  "cleanup_interval": "1m",
+  "enable_compression": false,
+  "eviction_policy": "lru",
+  "shard_count": 16,
+  "admission_policy": "always",
+  "max_key_size": 512,
+  "max_value_size": 65536,
+  "max_shard_size": 0
+}

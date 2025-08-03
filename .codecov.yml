@@ -1,0 +1,30 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 95%                # Raised target for core library only
+        threshold: 2%              # Stricter threshold
+    patch:
+      default:
+        target: 90%
+        threshold: 5%
+
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
+
+ignore:
+  - "cmd/"                    # Ignore all CLI tools and executables
+  - "examples/"               # Ignore example code  
+  - "docs/"                   # Ignore documentation
+  - "*_test.go"              # Ignore test files
+  - "testdata/"              # Ignore test data 

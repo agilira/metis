@@ -1,0 +1,65 @@
+version: 2
+updates:
+  # Monitor Go dependencies
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "agior"
+    assignees:
+      - "agior"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "go"
+    # Ignore major versions to avoid automatic breaking changes
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    # Allow patch and minor updates
+    allow:
+      - dependency-type: "direct"
+        update-types: ["version-update:semver-patch", "version-update:semver-minor"]
+      - dependency-type: "indirect"
+        update-types: ["version-update:semver-patch"]
+
+  # Monitor GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "agior"
+    assignees:
+      - "agior"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    # Ignore major versions for critical actions
+    ignore:
+      - dependency-name: "actions/checkout"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "actions/setup-go"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "actions/upload-artifact"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "actions/download-artifact"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "actions/create-release"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "actions/upload-release-asset"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "codecov/codecov-action"
+        update-types: ["version-update:semver-major"] 

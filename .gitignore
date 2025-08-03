@@ -1,0 +1,46 @@
+# Go binaries and test artifacts
+# These are generated during the build and test processes
+*.test
+*.out
+*.prof
+*.log
+*.a
+*.so
+*.exe
+*test
+*prof
+*out
+*zip
+*~
+
+# Executables from the cmd directory
+/cmd/metis-cli/metis-cli
+/cmd/metis-debug/metis-debug
+/cmd/profiler/profiler
+
+# Dependency directory (uncomment if you are not using Go modules to vendor)
+# vendor/
+
+# Generated reports and documentation
+# These files are for internal use and don't need to be versioned
+BENCHMARK_RELIABILITY_REPORT.md
+COVERAGE_REPORT.md
+MARKET_COMPARISON.md
+TEST_PLAN.md
+cmd/metis-debug/CLI_TEST_SUITE_REPORT.md
+cmd/profiler/PROFILER_ANALYSIS_REPORT.md
+DEPENDABOT_TEST_RESULTS.md
+
+# Internal tests
+# These files are for internal testing and don't need to be versioned
+benchmark_otter_comparison_test.go
+benchmark_comparison_test.go
+benchmark_verification_test.go
+benchmark_test.go
+otter_analysis_test.go
+benchmark_heavy_config_test.go
+benchmark_optimized_test.go
+
+# OS-specific files
+.DS_Store
+Thumbs.db
