@@ -5,7 +5,7 @@ Metis is a sharded, high-performance caching library for Go, designed for applic
 
 [![CI/CD Pipeline](https://github.com/agilira/metis/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/agilira/metis/actions?query=workflow%3A%22CI%2FCD+Pipeline%22)
 [![Security Scan](https://github.com/agilira/metis/workflows/Security%20Scan/badge.svg)](https://github.com/agilira/metis/actions?query=workflow%3A%22Security+Scan%22)
-[![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)](https://github.com/agilira/metis)
+[![Coverage](https://img.shields.io/badge/coverage-95%25-success?style=for-the-badge)](https://github.com/agilira/metis)
 
 ## Core Features
 
