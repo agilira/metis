@@ -59,3 +59,7 @@ cache.SetWithTTL("permanent-key", myValue, metis.NoExpiration)
 ### Q: Is Metis thread-safe?
 
 **A:** Yes. All public methods on the `metis.Cache` object are thread-safe. The cache is internally sharded, with each shard protected by its own read-write mutex, allowing for a high degree of concurrency. You can safely call `Get`, `Set`, `Delete`, etc., from multiple goroutines.
+
+---
+
+Metis • an AGILira fragment

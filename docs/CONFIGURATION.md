@@ -80,3 +80,7 @@ for _, suggestion := range validationResult.Suggestions {
     fmt.Println("Suggestion:", suggestion)
 }
 ```
+
+---
+
+Metis • an AGILira fragment

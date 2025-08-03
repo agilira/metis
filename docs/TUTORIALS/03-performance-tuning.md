@@ -153,3 +153,7 @@ BenchmarkWithCompression-12       183974          6433 ns/op        1584 B/op   
 -   **Shards are Key for Concurrency**: If your application has many goroutines accessing the cache simultaneously, `Shards` is your most important tuning parameter.
 -   **Use Compression for Memory Savings**: If your cache is consuming too much memory and your values are compressible (like JSON, text, or certain binary formats), enable `Compress`.
 -   **`WTinyLFU` is Usually Best**: The `WTinyLFU` eviction policy generally provides a better hit ratio than `LRU` for workloads with mixed access patterns (some popular items, some one-hit-wonders). Stick with it unless you have a very specific, LRU-friendly access pattern.
+
+---
+
+Metis • an AGILira fragment

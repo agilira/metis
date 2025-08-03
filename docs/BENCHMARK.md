@@ -122,3 +122,7 @@ This document provides a technical performance analysis of the Metis caching lib
 - Count-Min Sketch admission filter to prevent cache pollution.
 - Atomic operations for thread-safe statistics.
 - Separate read/write locks to optimize concurrent access.
+
+---
+
+Metis • an AGILira fragment

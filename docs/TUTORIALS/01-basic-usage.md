@@ -118,3 +118,7 @@ Final Cache Stats: {Size:0 Hits:1 Misses:3 HitRate:25.00}
 Congratulations! You have successfully set up Metis, stored and retrieved data, and observed its TTL-based eviction in action.
 
 In the next tutorial, we will explore how to configure Metis for a web server environment.
+
+---
+
+Metis • an AGILira fragment

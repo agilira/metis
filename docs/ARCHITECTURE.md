@@ -75,3 +75,7 @@ Metis is a sharded cache, meaning the data is partitioned across multiple indepe
 
 - **Eviction**: Eviction is triggered when a shard's `CacheSize` limit is reached during a `Set` operation. The chosen `EvictionPolicy` (e.g., LRU) determines which item is removed.
 - **TTL Cleanup**: A background goroutine runs periodically (defined by `CleanupInterval`) to scan for and remove expired items. This is a lazy process to avoid performance overhead on critical paths.
+
+---
+
+Metis • an AGILira fragment

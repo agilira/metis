@@ -126,3 +126,7 @@ cache := metis.New()
 defer cache.Close()
 // ... use the cache
 ```
+
+---
+
+Metis • an AGILira fragment

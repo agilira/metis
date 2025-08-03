@@ -51,3 +51,7 @@ Metis implements a standard, highly-optimized LRU using a doubly-linked list and
 | **Best For**        | Complex, real-world access patterns            | Simple, sequential, or looping access patterns |
 
 To set the eviction policy, use the `EvictionPolicy` field in your `CacheConfig` or `metis.json` file.
+
+---
+
+Metis • an AGILira fragment

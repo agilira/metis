@@ -1,6 +1,6 @@
 # Dependabot Configuration
 
-This document describes the Dependabot configuration for the Metis project.
+This document describes the Dependabot configuration for Metis.
 
 ## Overview
 
@@ -84,3 +84,7 @@ To temporarily disable Dependabot:
 1. Uncomment sections in `.github/dependabot.yml`
 2. Remove `ignore` rules as needed
 3. Dependabot will resume on the next scheduled run 
+
+---
+
+Metis • an AGILira fragment

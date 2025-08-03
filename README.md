@@ -1,4 +1,5 @@
 # Metis: A High-Performance Go Caching Library
+### an AGILira fragment
 
 Metis is a sharded, high-performance caching library for Go, designed for applications that demand speed, scalability, and observability. It provides precise control over eviction policies, memory usage, and configuration, making it suitable for a wide range of use cases, from web servers to high-throughput API gateways.
 
@@ -126,3 +127,7 @@ Metis is licensed under the [Mozilla Public License 2.0](./LICENSE).
 
 ## Documentation
 For detailed documentation, visit the [docs](./docs/) folder.
+
+---
+
+Metis • an AGILira fragment

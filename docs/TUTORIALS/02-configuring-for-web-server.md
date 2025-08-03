@@ -137,3 +137,7 @@ time curl http://localhost:8080/users/1
 ## Conclusion
 
 You have successfully integrated Metis into a web server to dramatically improve response times for repeated requests. This pattern is fundamental to building high-performance, scalable applications.
+
+---
+
+Metis • an AGILira fragment

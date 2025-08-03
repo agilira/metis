@@ -320,3 +320,7 @@ go run ./cmd/metis-debug/main.go inspect -json
 The CLI provides both estimated baselines (fast, consistent) and real measurements (accurate, overhead-inclusive) to support different development and testing needs.
 
 See the [Configuration Guide](./CONFIGURATION.md) for more details on how Metis loads configuration, and the [Benchmarking Guide](./BENCHMARKING.md) for advanced performance analysis techniques.
+
+---
+
+Metis • an AGILira fragment

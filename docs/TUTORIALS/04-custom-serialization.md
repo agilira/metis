@@ -132,3 +132,7 @@ func init() {
     gob.Register(Product{})
 }
 ```
+
+---
+
+Metis • an AGILira fragment
