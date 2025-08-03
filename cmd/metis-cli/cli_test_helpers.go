@@ -47,7 +47,7 @@ func (h *CLITestHelper) RunCLIWithInput(input string) (string, string, int) {
 	if strings.ContainsAny(mainPath, ";&|`$(){}[]<>\"'") {
 		h.t.Fatalf("Invalid path containing shell metacharacters: %s", mainPath)
 	}
-	//nolint:gosec
+	//nolint:gosec -- This is a test helper, mainPath is validated above and contains only safe characters
 	cmd := exec.Command("go", "run", mainPath)
 	cmd.Dir = tempDir // Run from temp directory
 	cmd.Stdin = strings.NewReader(input)
@@ -76,7 +76,7 @@ func (h *CLITestHelper) RunCLIWithInputInDir(input string, workDir string) (stri
 	if strings.ContainsAny(mainPath, ";&|`$(){}[]<>\"'") {
 		h.t.Fatalf("Invalid path containing shell metacharacters: %s", mainPath)
 	}
-	//nolint:gosec
+	//nolint:gosec -- This is a test helper, mainPath is validated above and contains only safe characters
 	cmd := exec.Command("go", "run", mainPath)
 	cmd.Dir = workDir
 	cmd.Stdin = strings.NewReader(input)
