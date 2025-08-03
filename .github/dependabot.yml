@@ -25,9 +25,7 @@ updates:
     # Allow patch and minor updates
     allow:
       - dependency-type: "direct"
-        update-types: ["version-update:semver-patch", "version-update:semver-minor"]
       - dependency-type: "indirect"
-        update-types: ["version-update:semver-patch"]
 
   # Monitor GitHub Actions
   - package-ecosystem: "github-actions"
