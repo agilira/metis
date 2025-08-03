@@ -2,7 +2,6 @@
 
 Metis is a sharded, high-performance caching library for Go, designed for applications that demand speed, scalability, and observability. It provides precise control over eviction policies, memory usage, and configuration, making it suitable for a wide range of use cases, from web servers to high-throughput API gateways.
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/agilira/metis)](https://goreportcard.com/report/github.com/agilira/metis)
 [![CI/CD Pipeline](https://github.com/agilira/metis/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/agilira/metis/actions?query=workflow%3A%22CI%2FCD+Pipeline%22)
 [![Security Scan](https://github.com/agilira/metis/workflows/Security%20Scan/badge.svg)](https://github.com/agilira/metis/actions?query=workflow%3A%22Security+Scan%22)
 [![Codecov](https://codecov.io/gh/agilira/metis/branch/main/graph/badge.svg)](https://codecov.io/gh/agilira/metis)

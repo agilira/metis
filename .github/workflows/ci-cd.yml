@@ -30,15 +30,12 @@ jobs:
       run: go test -v -race -coverprofile=coverage.out ./...
     
     - name: Run tests with coverage
-      run: go test -v -coverprofile=coverage.out -covermode=atomic ./...
+      run: go test -v -coverprofile=coverage.txt -covermode=atomic ./...
     
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v5
       with:
-        file: ./coverage.out
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: false
+        token: ${{ secrets.CODECOV_TOKEN }}
     
     - name: Run go vet
       run: go vet ./...
