@@ -34,6 +34,7 @@ func (h *CLITestHelper) RunCommand(args ...string) (stdout, stderr string, exitC
 			h.t.Fatalf("Invalid argument containing shell metacharacters: %s", arg)
 		}
 	}
+	//nolint:gosec
 	cmd := exec.Command("go", append([]string{"run", "main.go"}, args...)...)
 
 	var outBuf, errBuf bytes.Buffer
