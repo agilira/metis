@@ -30,7 +30,7 @@ jobs:
       run: go test -v -race -coverprofile=coverage.out ./...
     
     - name: Run tests with coverage
-      run: go test -v -coverprofile=coverage.txt -covermode=atomic ./...
+      run: go test -v -coverprofile=coverage.txt -covermode=atomic ./
     
     - name: Debug coverage file
       run: |
@@ -39,10 +39,24 @@ jobs:
         echo "=== Coverage file content (first 10 lines) ==="
         head -10 coverage.txt
     
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - name: Calculate coverage percentage
+      run: |
+        # Extract coverage percentage from go test output
+        COVERAGE=$(go tool cover -func=coverage.txt | grep total | awk '{print $3}' | sed 's/%//')
+        echo "COVERAGE_PERCENTAGE=$COVERAGE" >> $GITHUB_ENV
+        echo "Coverage: $COVERAGE%"
+    
+    - name: Create coverage badge
+      run: |
+        # Create a simple JSON endpoint for the badge
+        echo "{\"schemaVersion\": 1, \"label\": \"coverage\", \"message\": \"${{ env.COVERAGE_PERCENTAGE }}%\", \"color\": \"brightgreen\"}" > coverage-badge.json
+    
+    - name: Upload coverage badge
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-badge
+        path: coverage-badge.json
+        retention-days: 30
     
     - name: Run go vet
       run: go vet ./...
