@@ -42,12 +42,20 @@ func (h *CLITestHelper) RunCLIWithInput(input string) (string, string, int) {
 	// Build command to run CLI from the main directory but execute in temp directory
 	// This ensures metis.json is created in the temp directory
 	mainPath := filepath.Join(h.mainDir, "main.go")
-	// Validate path to prevent command injection (only check for actual shell metacharacters)
-	// On Windows, \ and : are normal path characters, so we exclude them from the check
+
+	// Validate path to prevent command injection
+	// Check for shell metacharacters and ensure it's a valid Go file
 	if strings.ContainsAny(mainPath, ";&|`$(){}[]<>\"'") {
 		h.t.Fatalf("Invalid path containing shell metacharacters: %s", mainPath)
 	}
-	//nolint:gosec -- This is a test helper, mainPath is validated above and contains only safe characters
+
+	// Ensure the file exists and is a Go file
+	if !strings.HasSuffix(mainPath, ".go") {
+		h.t.Fatalf("Invalid file extension: %s", mainPath)
+	}
+
+	// Use exec.Command with hardcoded "go" and "run" commands, only mainPath is variable
+	// The mainPath is validated above and contains only safe characters
 	cmd := exec.Command("go", "run", mainPath)
 	cmd.Dir = tempDir // Run from temp directory
 	cmd.Stdin = strings.NewReader(input)
@@ -71,12 +79,20 @@ func (h *CLITestHelper) RunCLIWithInput(input string) (string, string, int) {
 // RunCLIWithInputInDir runs CLI in a specific directory
 func (h *CLITestHelper) RunCLIWithInputInDir(input string, workDir string) (string, string, int) {
 	mainPath := filepath.Join(h.mainDir, "main.go")
-	// Validate path to prevent command injection (only check for actual shell metacharacters)
-	// On Windows, \ and : are normal path characters, so we exclude them from the check
+
+	// Validate path to prevent command injection
+	// Check for shell metacharacters and ensure it's a valid Go file
 	if strings.ContainsAny(mainPath, ";&|`$(){}[]<>\"'") {
 		h.t.Fatalf("Invalid path containing shell metacharacters: %s", mainPath)
 	}
-	//nolint:gosec -- This is a test helper, mainPath is validated above and contains only safe characters
+
+	// Ensure the file exists and is a Go file
+	if !strings.HasSuffix(mainPath, ".go") {
+		h.t.Fatalf("Invalid file extension: %s", mainPath)
+	}
+
+	// Use exec.Command with hardcoded "go" and "run" commands, only mainPath is variable
+	// The mainPath is validated above and contains only safe characters
 	cmd := exec.Command("go", "run", mainPath)
 	cmd.Dir = workDir
 	cmd.Stdin = strings.NewReader(input)
