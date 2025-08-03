@@ -29,34 +29,33 @@ jobs:
     - name: Run tests
       run: go test -v -race -coverprofile=coverage.out ./...
     
-    - name: Run tests with coverage
-      run: go test -v -coverprofile=coverage.txt -covermode=atomic ./
-    
-    - name: Debug coverage file
-      run: |
-        echo "=== Coverage file info ==="
-        ls -la coverage.txt
-        echo "=== Coverage file content (first 10 lines) ==="
-        head -10 coverage.txt
-    
     - name: Calculate coverage percentage
       run: |
         # Extract coverage percentage from go test output
-        COVERAGE=$(go tool cover -func=coverage.txt | grep total | awk '{print $3}' | sed 's/%//')
+        COVERAGE=$(go tool cover -func=coverage.out | grep total | awk '{print $3}' | sed 's/%//')
         echo "COVERAGE_PERCENTAGE=$COVERAGE" >> $GITHUB_ENV
         echo "Coverage: $COVERAGE%"
     
-    - name: Create coverage badge
+    - name: Create coverage badge file
       run: |
-        # Create a simple JSON endpoint for the badge
-        echo "{\"schemaVersion\": 1, \"label\": \"coverage\", \"message\": \"${{ env.COVERAGE_PERCENTAGE }}%\", \"color\": \"brightgreen\"}" > coverage-badge.json
+        # Create a JSON file that will be committed to the repository
+        echo "{\"coverage\": \"${{ env.COVERAGE_PERCENTAGE }}%\"}" > coverage-badge.json
+        echo "Coverage badge created: ${{ env.COVERAGE_PERCENTAGE }}%"
     
-    - name: Upload coverage badge
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage-badge
-        path: coverage-badge.json
-        retention-days: 30
+    - name: Update coverage badge only if changed
+      run: |
+        # Only commit if the coverage has changed
+        if [ ! -f coverage-badge.json ] || [ "$(cat coverage-badge.json)" != "{\"coverage\": \"${{ env.COVERAGE_PERCENTAGE }}%\"}" ]; then
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add coverage-badge.json
+          git commit -m "Update coverage badge: ${{ env.COVERAGE_PERCENTAGE }}%"
+          git push
+        else
+          echo "Coverage unchanged, skipping commit"
+        fi
+    
+
     
     - name: Run go vet
       run: go vet ./...
