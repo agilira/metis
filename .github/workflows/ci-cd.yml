@@ -32,10 +32,17 @@ jobs:
     - name: Run tests with coverage
       run: go test -v -coverprofile=coverage.txt -covermode=atomic ./...
     
+    - name: Debug coverage file
+      run: |
+        echo "=== Coverage file info ==="
+        ls -la coverage.txt
+        echo "=== Coverage file content (first 10 lines) ==="
+        head -10 coverage.txt
+    
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v5
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+      uses: codecov/codecov-action@v4
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     
     - name: Run go vet
       run: go vet ./...
