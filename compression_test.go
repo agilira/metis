@@ -499,7 +499,7 @@ func TestCompression_ErrorHandling(t *testing.T) {
 	largeData := make([]byte, 1000000) // 1MB of data
 
 	// Test compression with large data
-	compressed, err := compressGzipWithHeader(largeData, "test_header")
+	compressed, err := compressGzipWithHeader(largeData, "TEST")
 	if err != nil {
 		t.Logf("Compression error (expected for large data): %v", err)
 	} else {
@@ -508,8 +508,8 @@ func TestCompression_ErrorHandling(t *testing.T) {
 		if err != nil {
 			t.Logf("Decompression error: %v", err)
 		} else {
-			if header != "test_header" {
-				t.Logf("Expected header 'test_header', got '%s'", header)
+			if header != "TEST" {
+				t.Logf("Expected header 'TEST', got '%s'", header)
 			}
 			if len(payload) != len(largeData) {
 				t.Logf("Expected payload length %d, got %d", len(largeData), len(payload))
