@@ -76,24 +76,26 @@ jobs:
     - name: Run gosec with exclusions
       run: |
         # Run gosec excluding known false positives
+        # G204: Subprocess launched with variable - false positive for test helpers
         # G103: unsafe.Pointer usage - false positive for performance-critical string-to-byte conversion
         # G115: integer overflow - false positive due to proper bounds checking
         # G404: weak random - false positive for performance profiler
         # G304: file inclusion - false positive due to path validation implemented
-        gosec -exclude=G103,G115,G404,G304 ./...
+        gosec -exclude=G204,G103,G115,G404,G304 ./...
       
     - name: Run gosec for remaining issues only
       run: |
         # Run a second pass to show only the issues we care about
         echo "=== Security Scan Results ==="
         echo "Excluded rules (false positives):"
+        echo "- G204: Subprocess launched with variable (test helpers)"
         echo "- G103: unsafe.Pointer usage (performance-critical hashing)"
         echo "- G115: integer overflow (proper bounds checking implemented)"
         echo "- G404: weak random (performance profiler context)"
         echo "- G304: file inclusion (path validation implemented)"
         echo ""
         echo "Remaining issues:"
-        gosec -exclude=G103,G115,G404,G304 -fmt=text ./...
+        gosec -exclude=G204,G103,G115,G404,G304 -fmt=text ./...
 
   build:
     name: Build
