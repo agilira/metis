@@ -17,6 +17,22 @@ Metis is a high-performance, sharded caching library written in Go, designed for
 - **Robust Serialization**: Uses Go's `gob` package to reliably serialize a wide range of data types, including complex nested structures.
 - **Observability**: Exposes detailed statistics (hits, misses, hit rate) and includes tools for performance benchmarking and profiling.
 
+## Key Advantages
+
+### Zero External Dependencies
+Metis is built with zero external dependencies, ensuring lightweight deployment, enhanced security, and simplified integration. This eliminates potential vulnerabilities, version conflicts, and reduces the overall footprint of your application.
+
+### Performance Benchmarks
+Metis delivers consistent high performance across all operations, optimized for production workloads:
+
+| Operation      | Metis W-TinyLFU | Memory Efficiency |
+| -------------- | --------------- | ----------------- |
+| **Set**        | 133.5 ns/op     | 16 B/op, 2 allocs |
+| **Get**        | 79.97 ns/op     | 4 B/op, 1 alloc   |
+| **Concurrent** | 101.5 ns/op     | 16 B/op, 2 allocs |
+
+*Benchmark results from August 2025 - Go 1.23.11*
+
 ## Installation
 
 To add Metis to your project, run:
