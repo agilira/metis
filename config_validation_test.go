@@ -1,4 +1,4 @@
-// config_phase1_test.go: Advanced validation tests for config loading
+// config_validation_test.go: Advanced validation tests for config loading
 //
 // Copyright (c) 2025 AGILira
 // Series: an AGLIra fragment
