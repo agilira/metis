@@ -1,27 +1,12 @@
-# Changelog
+# Changelog - Version 0.1.0
 
-All notable changes to this project will be documented in this file.
+## Release Date
+2025-08-03
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## Overview
+Initial release of Metis high-performance caching library with comprehensive features and 95% test coverage.
 
-## [Unreleased]
-
-### Added
-- [Future features will be listed here]
-
-### Changed
-- [Future changes will be listed here]
-
-### Fixed
-- [Future fixes will be listed here]
-
-### Security
-- [Future security updates will be listed here]
-
-## [0.1.0] - 2025-08-03
-
-### Added
+## #New
 - High-performance sharded caching library with 95% test coverage
 - WTinyLFU (Windowed TinyLFU) eviction policy for optimal hit rates
 - LRU (Least Recently Used) eviction policy for general-purpose caching
@@ -34,22 +19,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use-case specific constructors (WebServer, APIGateway, Development)
 - Extensive benchmarking and performance testing suite
 
-### Changed
+## #Updated
 - Enhanced error handling and edge case management
 - Improved memory efficiency and garbage collection patterns
 - Optimized sharding algorithm for better concurrency
 
-### Fixed
+## #Corrected
 - Resolved CI/CD pipeline issues and test reliability
 - Fixed compression header handling in edge cases
 - Improved configuration validation logic for varying CPU core counts
 - Enhanced security scanning and dependency management
 
-### Security
-- Implemented comprehensive security scanning with gosec
-- Added input validation and sanitization for all external inputs
-- Enhanced CLI argument validation to prevent command injection
+## #Features
+- `New()` - Create cache with custom configuration
+- `WebServer()` - Optimized constructor for web server use cases
+- `APIGateway()` - Optimized constructor for API gateway scenarios
+- `Development()` - Constructor for development and testing
+- `Set()` - Store key-value pairs with optional TTL
+- `Get()` - Retrieve values with hit/miss statistics
+- `Delete()` - Remove items from cache
+- `Clear()` - Clear entire cache
+- `Stats()` - Get detailed cache statistics
+- `Serialize()` - Export cache to gob format
+- `Deserialize()` - Import cache from gob format
+- `Close()` - Clean shutdown with resource cleanup
 
----
-
-Metis • an AGILira fragment
+## #Compatibility
+- Go 1.21+ compatibility
+- MPL-2.0 license
+- Cross-platform support (Windows, Linux, macOS)
+- High performance with minimal memory overhead
+- Thread-safe operations
+- No security vulnerabilities detected by gosec

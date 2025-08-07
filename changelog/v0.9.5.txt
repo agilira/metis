@@ -1,0 +1,43 @@
+# Changelog - Version 0.9.5
+
+## Release Date
+2025-08-07
+
+## Overview
+Release v0.9.5 with clean dependencies, improved naming conventions, and enhanced project structure for production deployment.
+
+## #New
+- Clean go.mod without external dependencies for production deployment
+- Semantic file naming improvements (config_validation_test.go)
+- Development-only files properly excluded via .gitignore
+- Enhanced project structure for library distribution
+
+## #Updated
+- Renamed config_phase1_test.go to config_validation_test.go for better semantic clarity
+- Updated Go version to 1.23.11 in go.mod
+- Improved .gitignore to exclude development-only test files
+
+## #Corrected
+- Fixed semantic naming conventions for test files
+- Ensured development benchmark files are properly excluded from distribution
+
+## #Features
+- WTinyLFU (Windowed TinyLFU) eviction policy for optimal hit rates
+- LRU (Least Recently Used) eviction policy for general-purpose caching
+- Multi-level configuration system: programmatic, JSON file, and environment variables
+- Intelligent configuration validator with performance optimization suggestions
+- Built-in Gzip compression for memory optimization
+- Comprehensive observability with detailed statistics (hits, misses, hit rate)
+- CLI tools for debugging and profiling cache performance
+- Robust serialization using Go's `gob` package
+- Use-case specific constructors (WebServer, APIGateway, Development)
+- Extensive benchmarking and performance testing suite
+
+## #Compatibility
+- Zero external dependencies in production
+- Go 1.23.11+ compatibility
+- MPL-2.0 license
+- Cross-platform support (Windows, Linux, macOS)
+- High performance with minimal memory overhead
+- Thread-safe operations
+- No security vulnerabilities detected by gosec

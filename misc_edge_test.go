@@ -1,4 +1,4 @@
-// various_edge_test.go: Various edge cases for testing
+// misc_edge_test.go: Various edge cases for testing
 //
 // Copyright (c) 2025 AGILira
 // Series: an AGLIra fragment
