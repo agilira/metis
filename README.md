@@ -28,11 +28,11 @@ Metis delivers consistent high performance across all operations, optimized for 
 
 | Operation      | Metis W-TinyLFU | Memory Efficiency |
 | -------------- | --------------- | ----------------- |
-| **Set**        | 133.5 ns/op     | 16 B/op, 2 allocs |
-| **Get**        | 79.97 ns/op     | 4 B/op, 1 alloc   |
-| **Concurrent** | 101.5 ns/op     | 16 B/op, 2 allocs |
+| **Set**        | 136.9 ns/op     | 16 B/op, 2 allocs |
+| **Get**        | 89.41 ns/op     | 4 B/op, 1 alloc   |
+| **Concurrent** | 140.7 ns/op     | 16 B/op, 2 allocs |
 
-*Benchmark results from August 2025 - Go 1.23.11*
+*Benchmark results from GitHub Actions - Go 1.23.11, AMD EPYC 7763*
 
 ## Installation
 

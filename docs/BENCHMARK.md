@@ -8,10 +8,10 @@ This document provides a technical performance analysis of the Metis caching lib
 
 ### Hardware and System
 
-- **CPU**: AMD Ryzen 5 7520U with Radeon Graphics
+- **CPU**: AMD EPYC 7763 64-Core Processor (GitHub Actions)
 - **OS**: Linux amd64
-- **Runtime**: Go 1.23+
-- **Concurrency**: 8 workers
+- **Runtime**: Go 1.23.11
+- **Concurrency**: 4 workers (GitHub Actions default)
 
 ### Benchmark Configuration
 
@@ -30,13 +30,13 @@ This document provides a technical performance analysis of the Metis caching lib
 
 ### W-TinyLFU Performance (with Admission Filter Enabled)
 
-#### Verified Results (August 2025)
+#### Verified Results (GitHub Actions - August 2025)
 
 | Operation      | Metis W-TinyLFU | Memory Efficiency |
 | -------------- | --------------- | ----------------- |
-| **Set**        | 133.5 ns/op     | 16 B/op, 2 allocs |
-| **Get**        | 79.97 ns/op     | 4 B/op, 1 alloc   |
-| **Concurrent** | 101.5 ns/op     | 16 B/op, 2 allocs |
+| **Set**        | 136.9 ns/op     | 16 B/op, 2 allocs |
+| **Get**        | 89.41 ns/op     | 4 B/op, 1 alloc   |
+| **Concurrent** | 140.7 ns/op     | 16 B/op, 2 allocs |
 
 #### Admission Filter Enhancements
 
@@ -76,23 +76,23 @@ This document provides a technical performance analysis of the Metis caching lib
 
 ### Operation-Specific Performance
 
-- **Set Operations**: 133.5 ns/op, 16 B/op, 2 allocations.
-- **Get Operations**: 79.97 ns/op, 4 B/op, 1 allocation.
-- **Concurrent Operations**: 101.5 ns/op, 16 B/op, 2 allocations, showing exceptional performance under load.
+- **Set Operations**: 136.9 ns/op, 16 B/op, 2 allocations.
+- **Get Operations**: 89.41 ns/op, 4 B/op, 1 allocation.
+- **Concurrent Operations**: 140.7 ns/op, 16 B/op, 2 allocations, showing exceptional performance under load.
 
 ### Throughput Estimates
 
-- **Set Operations**: ~7.49 million ops/second.
-- **Concurrent Operations**: ~9.85 million ops/second.
-- **Get Operations**: ~12.51 million ops/second.
+- **Set Operations**: ~7.30 million ops/second.
+- **Concurrent Operations**: ~7.11 million ops/second.
+- **Get Operations**: ~11.18 million ops/second.
 
 ### Production Profiling Analysis
 
-#### Metis W-TinyLFU Production Metrics (August 2025)
+#### Metis W-TinyLFU Production Metrics (GitHub Actions - August 2025)
 
 **Configuration:**
 
-- **Workers**: 8 concurrent goroutines
+- **Workers**: 4 concurrent goroutines
 - **Duration**: 5 seconds of sustained load
 - **Workload**: Balanced (50% Get, 50% Set)
 
