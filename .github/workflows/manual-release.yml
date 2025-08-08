@@ -1,0 +1,83 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.0.0)'
+        required: true
+        type: string
+        default: 'v1.0.0'
+      prerelease:
+        description: 'Is this a prerelease?'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.24.5'
+        cache: true
+    
+    - name: Verify build
+      run: |
+        # Quick build verification to ensure code compiles
+        echo "Verifying code compiles correctly..."
+        go build ./...
+    
+    - name: Build for multiple platforms
+      run: |
+        # Build for Linux
+        GOOS=linux GOARCH=amd64 go build -o bin/metis-linux-amd64 ./cmd/metis-cli
+        GOOS=linux GOARCH=arm64 go build -o bin/metis-linux-arm64 ./cmd/metis-cli
+        
+        # Build for Windows
+        GOOS=windows GOARCH=amd64 go build -o bin/metis-windows-amd64.exe ./cmd/metis-cli
+        
+        # Build for macOS
+        GOOS=darwin GOARCH=amd64 go build -o bin/metis-darwin-amd64 ./cmd/metis-cli
+        GOOS=darwin GOARCH=arm64 go build -o bin/metis-darwin-arm64 ./cmd/metis-cli
+    
+    - name: Build profiler
+      run: |
+        GOOS=linux GOARCH=amd64 go build -o bin/profiler-linux-amd64 ./cmd/profiler
+        GOOS=windows GOARCH=amd64 go build -o bin/profiler-windows-amd64.exe ./cmd/profiler
+        GOOS=darwin GOARCH=amd64 go build -o bin/profiler-darwin-amd64 ./cmd/profiler
+    
+    - name: Create Git Tag
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git tag ${{ inputs.version }}
+        git push origin ${{ inputs.version }}
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ inputs.version }}
+        name: Release ${{ inputs.version }}
+        draft: false
+        prerelease: ${{ inputs.prerelease }}
+        files: |
+          bin/metis-linux-amd64
+          bin/metis-linux-arm64
+          bin/metis-windows-amd64.exe
+          bin/metis-darwin-amd64
+          bin/metis-darwin-arm64
+          bin/profiler-linux-amd64
+          bin/profiler-windows-amd64.exe
+          bin/profiler-darwin-amd64
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

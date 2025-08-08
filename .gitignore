@@ -32,6 +32,7 @@ TEST_PLAN.md
 cmd/metis-debug/CLI_TEST_SUITE_REPORT.md
 cmd/profiler/PROFILER_ANALYSIS_REPORT.md
 DEPENDABOT_TEST_RESULTS.md
+MANUAL_RELEASE.md
 
 # Internal tests
 # These files are for internal testing and don't need to be versioned
